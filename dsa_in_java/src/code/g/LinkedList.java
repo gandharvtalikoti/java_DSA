@@ -90,4 +90,15 @@ public class LinkedList {
         }
         return -1; // not found
     }
+
+    //getSize
+    public int getSize(){
+        int c = 0;
+        var curr = first;
+        while (curr !=null){
+            c++;
+            curr = curr.next;
+        }
+        return c;
+    }
 }

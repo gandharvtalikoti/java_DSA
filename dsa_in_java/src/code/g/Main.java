@@ -40,9 +40,8 @@ public class Main {
         list.addFirst(2);
         list.addFirst(3);
 
-        list.deleteFirst();
-        list.deleteLast();
 
-        System.out.println(list);
+
+        System.out.println(list.getSize());
     }
 }
