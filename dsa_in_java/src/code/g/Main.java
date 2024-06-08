@@ -35,13 +35,11 @@ public class Main {
         list.addLast(1);
         list.addLast(2);
         list.addLast(3);
+        list.addLast(4);
+        list.addLast(5);
 
-        list.addFirst(1);
-        list.addFirst(2);
-        list.addFirst(3);
+        list.contains(3);
+        System.out.println(list.size());
 
-
-
-        System.out.println(list.getSize());
     }
 }

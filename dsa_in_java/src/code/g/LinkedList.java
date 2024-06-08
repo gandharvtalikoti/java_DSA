@@ -4,6 +4,7 @@ import java.util.NoSuchElementException;
 
 public class LinkedList {
     private static class Node {
+        // members of a NODE
         private int value;
         private Node next;
 
@@ -12,8 +13,10 @@ public class LinkedList {
         }
     }
 
+    // members of linkedlist
     private Node first;
     private Node last;
+    private int size;
 
     //addFirst
     public void addFirst(int item) {
@@ -24,18 +27,19 @@ public class LinkedList {
             n.next = first;
             first = n;
         }
-
+        size++;
     }
 
     //addLast
     public void addLast(int item) {
         var node = new Node(item);
-        if (first == null)
+        if (first == null) // if there are no elements in list
             last = first = node;
         else {
             last.next = node;
             last = node;
         }
+        size++;
     }
 
     public boolean isEmpty() {
@@ -43,39 +47,52 @@ public class LinkedList {
     }
 
     //deleteFirst
-    public void deleteFirst() {
+    public void removeFirst() {
         //[1  2->3->4]
         if (isEmpty())
             throw new NoSuchElementException();
         if (first == last) {
+            first = last = null;
             return;
         }
-        var second = first.next;
-        first.next = null; // remove link
-        first = second;
-
+        else {
+        var second = first.next; // have a track of the second address
+            first.next = null; // remove link
+            first = second;
+        }
+        size--;
     }
 
-
-    //deleteLast
-    public void deleteLast() {
+    //getPrevious node
+    private Node getPrevious(Node node) {
         var curr = first;
-        while (curr.next.next != null) {
+        while (curr != null) {
+            if (curr == node)
+                break;
             curr = curr.next;
         }
-        last = curr;
-        curr.next = null;
+        return curr;
+    }
+
+    //deleteLast
+    public void removeLast() {
+        if (isEmpty())
+            throw new NoSuchElementException();
+
+        if (first==last){
+            first = last = null;
+        }else{
+        var previous = getPrevious(last);
+            last = previous;
+            last.next = null;
+        }
+        //[1->2->3->4]
+        size--;
     }
 
     //contains
     public boolean contains(int key) {
-        var curr = first;
-        while (curr != null) {
-            if (curr.value == key)
-                return true;
-            curr = curr.next;
-        }
-        return false;
+        return indexOf(key) != -1;
     }
 
     //indexOf
@@ -91,14 +108,10 @@ public class LinkedList {
         return -1; // not found
     }
 
-    //getSize
-    public int getSize(){
-        int c = 0;
-        var curr = first;
-        while (curr !=null){
-            c++;
-            curr = curr.next;
-        }
-        return c;
+    //getSize O(1)
+    public int size() {
+        return size;
     }
+
+
 }
