@@ -39,7 +39,7 @@ public class Main {
         list.addLast(5);
 
         list.contains(3);
-        System.out.println(list.size());
+        System.out.println(Arrays.toString(list.toArray()));
 
     }
 }

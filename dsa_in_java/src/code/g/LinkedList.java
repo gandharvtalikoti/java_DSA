@@ -113,5 +113,15 @@ public class LinkedList {
         return size;
     }
 
-
+    // converting linkedlist to array
+    public int[] toArray(){
+       int[] array = new int[size];
+       var curr = first;
+       var index = 0;
+       while (curr!= null){
+           array[index++] = curr.value;
+           curr = curr.next;
+       }
+       return array;
+    }
 }
