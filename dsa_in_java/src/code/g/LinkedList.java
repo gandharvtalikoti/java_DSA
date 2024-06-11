@@ -124,4 +124,41 @@ public class LinkedList {
        }
        return array;
     }
+
+    // reversing a linked list
+    public void reverse(){
+        //[1->2->3] => [3->2->1]
+        if (isEmpty()){
+            return;
+        }
+        var prev = first;
+        var curr = first.next;
+        while (curr!=null){
+            var next = curr.next; // to store the next value
+            curr.next = prev; // reverse the link
+            prev  = curr;
+            curr = next;
+        }
+        last = first;
+        last.next = null;
+        first = prev;
+    }
+
+    //getkthNodeFromTheEnd
+    public int getKthFromTheEnd(int k){
+        if (isEmpty())
+            throw new IllegalStateException();
+        var a = first;
+        var b = first;
+        for (int i =0; i<k-1;i++) {
+            b = b.next;
+            if (b==null)
+                throw new IllegalArgumentException();
+        }
+        while (b!=last){
+            a = a.next;
+            b = b.next;
+        }
+        return a.value;
+    }
 }
